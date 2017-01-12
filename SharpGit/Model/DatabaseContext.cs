@@ -13,8 +13,7 @@ namespace SharpGit.Model
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-            .HasAlternateKey(u => u.Email);
+
         }
     }
 }

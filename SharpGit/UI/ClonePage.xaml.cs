@@ -31,6 +31,7 @@ namespace SharpGit.UI
         private void Clone(object sender, RoutedEventArgs e)
         {
             Message m = CommandInterface.Clone(UrlText.Text, "test", PathText.Text);
+            // TODO fork and loadbar
             Output.Text = m.Text;
         }
 

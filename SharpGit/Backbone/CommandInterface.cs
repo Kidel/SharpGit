@@ -14,7 +14,15 @@ namespace SharpGit.Backbone
             try
             {
                 m.Type = 0;
-                m.Text = LibGit2Sharp.Repository.Clone(url, destinationFolder);
+
+                if (Status.HasUserLoggedIn)
+                {
+                    var co = new LibGit2Sharp.CloneOptions();
+                    co.CredentialsProvider = (_url, _user, _cred) => new LibGit2Sharp.UsernamePasswordCredentials { Username = Status.CurrentUser.UserName, Password = Status.CurrentUser.Password };
+                    m.Text = LibGit2Sharp.Repository.Clone(url, destinationFolder, co);
+                }
+                else
+                    m.Text = LibGit2Sharp.Repository.Clone(url, destinationFolder);
 
                 SelectRepository(rf.CreateRepository(name, destinationFolder).Name);
             }
@@ -26,7 +34,41 @@ namespace SharpGit.Backbone
             return m;
         }
 
-        public Message SelectRepository(string name) {
+        public Message LogIn(string username, string password, string type)
+        {
+            Message m = new Message();
+            try
+            {
+                m.Type = 0;
+                var user = uf.GetFirstUser();
+
+                if (user == null)
+                {
+                    user = uf.CreateUser("", username, "", "", type);
+                }
+                else
+                {
+                    uf.UpdateUser(user.UserId, "", username, "", "", type);
+                }
+
+                SetCurrentUser(user);
+                Status.CurrentUser.Password = password;
+            }
+            catch (Exception e)
+            {
+                m.Type = 1;
+                m.Text = e.Message;
+            }
+            return m;
+        }
+
+        public void SetCurrentUser(Model.User user)
+        {
+            Status.CurrentUser = user;
+        }
+
+        public Message SelectRepository(string name)
+        {
             Message m = new Message();
             try
             {
@@ -44,6 +86,7 @@ namespace SharpGit.Backbone
             }
             return m;
         }
+
         public Message Pull()
         {
             Message m = new Message();
@@ -61,8 +104,8 @@ namespace SharpGit.Backbone
                             Username = Status.CurrentUser.UserName,
                             Password = Status.CurrentUser.Password,
                         });
-                m.Text = LibGit2Sharp.Commands.Pull(repo, 
-                                                    new LibGit2Sharp.Signature(Status.CurrentUser.UserName, Status.CurrentUser.Password, new DateTimeOffset(DateTime.Now)), 
+                m.Text = LibGit2Sharp.Commands.Pull(repo,
+                                                    new LibGit2Sharp.Signature(Status.CurrentUser.UserName, Status.CurrentUser.Password, new DateTimeOffset(DateTime.Now)),
                                                     options)
                                                     .Status
                                                     .ToString();
@@ -74,20 +117,5 @@ namespace SharpGit.Backbone
             }
             return m;
         }
-
-        /*
-           Message Fetch();
-           Message Status();
-
-           Message Push();
-           Message Add();
-           Message Add(string[] files);
-           Message Commit(string message);
-           Message Checkout();
-           Message Checkout(string[] files);
-           Message Checkout(string commit);
-           Message Checkout(string commit, string[] files);
-           Message ResetHard();
-           */
     }
 }

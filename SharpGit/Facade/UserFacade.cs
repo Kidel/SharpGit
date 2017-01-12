@@ -12,62 +12,149 @@ namespace SharpGit.Model.Facade
 
         public User CreateUser(string email, string userName, string firstName, string lastName, string accountType)
         {
-            using (var transaction = _dbContext.Database.BeginTransaction())
+            try
             {
-                var user = new User
+                using (var transaction = _dbContext.Database.BeginTransaction())
                 {
-                    Email = email,
-                    UserName = userName,
-                    Name = $"{firstName} {lastName}",
-                    AccountType = accountType
-                };
-                _dbContext.Add(user);
-                _dbContext.SaveChanges();
+                    var user = new User
+                    {
+                        Email = email,
+                        UserName = userName,
+                        Name = $"{firstName} {lastName}",
+                        AccountType = accountType
+                    };
+                    _dbContext.Add(user);
+                    _dbContext.SaveChanges();
 
-                // Commit transaction if all commands succeed, transaction will auto-rollback
-                // when disposed if either commands fails
-                transaction.Commit();
-                return user;
+                    // Commit transaction if all commands succeed, transaction will auto-rollback
+                    // when disposed if either commands fails
+                    transaction.Commit();
+                    return user;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
             }
         }
         public List<User> GetUserList()
         {
-            return _dbContext.Users.ToList();
+            try
+            {
+                return _dbContext.Users.ToList();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return new List<User>();
+            }
         }
 
-        public User GetUser(int Id)
+        public User GetFirstUser()
         {
-            return _dbContext.Users
-                .Single(b => b.UserId == Id);
+            try
+            {
+                return _dbContext.Users.First();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+        }
+
+        public User GetUser(int id)
+        {
+            try
+            {
+                return _dbContext.Users
+                    .Single(b => b.UserId == id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
         }
 
         public User GetUserByEmail(string email)
         {
-            return _dbContext.Users
-                .Single(b => b.Email == email);
-        }
-
-        public User UpdateUser(User user)
-        {
-            using (var transaction = _dbContext.Database.BeginTransaction())
+            try
             {
-                _dbContext.Update(user);
-                _dbContext.SaveChanges();
-
-                transaction.Commit();
-                return user;
+                return _dbContext.Users
+                    .Single(b => b.Email == email);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
             }
         }
 
-        public bool DeleteUser(User user)
+        public User GetUserByUserName(string username)
         {
-            using (var transaction = _dbContext.Database.BeginTransaction())
+            try
             {
-                _dbContext.Remove(user);
-                _dbContext.SaveChanges();
+                return _dbContext.Users
+                    .Single(b => b.UserName == username);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+        }
 
-                transaction.Commit();
-                return true;
+        public User UpdateUser(int id, string email, string userName, string firstName, string lastName, string accountType)
+        {
+            //try
+            //{
+                using (var transaction = _dbContext.Database.BeginTransaction())
+                {
+                    var user = GetUser(id);
+
+                    if (firstName != "" || lastName != "")
+                        user.Name = $"{firstName} {lastName}";
+                    if (email != "")
+                        user.Email = email;
+                    if (userName != "")
+                        user.UserName = userName;
+                    if (accountType != "")
+                        user.AccountType = accountType;
+
+                    _dbContext.Update(user);
+                    _dbContext.SaveChanges();
+
+                    transaction.Commit();
+                    return user;
+                }
+            //}
+            //catch (Exception e)
+            //{
+                //Console.WriteLine(e.ToString());
+                //return null;
+            //}
+        }
+
+        public bool DeleteUser(int id)
+        {
+            try
+            {
+                using (var transaction = _dbContext.Database.BeginTransaction())
+                {
+                    var user = GetUser(id);
+                    _dbContext.Remove(user);
+                    _dbContext.SaveChanges();
+
+                    transaction.Commit();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
             }
         }
     }

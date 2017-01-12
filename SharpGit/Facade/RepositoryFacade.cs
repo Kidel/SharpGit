@@ -33,6 +33,19 @@ namespace SharpGit.Model.Facade
             }
         }
 
+        public Repository GetFirstRepository()
+        {
+            try
+            {
+                return _dbContext.Repositories.First();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+        }
+
         public List<Repository> GetRepositoryList()
         {
             try
@@ -42,7 +55,7 @@ namespace SharpGit.Model.Facade
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                return null;
+                return new List<Repository>();
             }
         }
 
@@ -74,12 +87,19 @@ namespace SharpGit.Model.Facade
             }
         }
 
-        public Repository UpdateRepository(Repository repository)
+        public Repository UpdateRepository(int id, string name, string path)
         {
             try
             {
                 using (var transaction = _dbContext.Database.BeginTransaction())
                 {
+                    var repository = GetFirstRepository();
+
+                    if (name != "")
+                        repository.Name = name;
+                    if (path != "")
+                        repository.Path = path;
+
                     _dbContext.Update(repository);
                     _dbContext.SaveChanges();
 
@@ -94,12 +114,14 @@ namespace SharpGit.Model.Facade
             }
         }
 
-        public bool DeleteRepository(Repository repository)
+        public bool DeleteRepository(int id)
         {
             try
             {
                 using (var transaction = _dbContext.Database.BeginTransaction())
                 {
+                    var repository = GetRepository(id);
+
                     _dbContext.Remove(repository);
                     _dbContext.SaveChanges();
 

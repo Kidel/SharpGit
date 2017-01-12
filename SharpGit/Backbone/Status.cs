@@ -12,5 +12,6 @@ namespace SharpGit.Backbone
         public static Repository CurrentRepository { get; set; }
 
         public static User CurrentUser { get; set; }
+        public static bool HasUserLoggedIn { get; set; }
     }
 }

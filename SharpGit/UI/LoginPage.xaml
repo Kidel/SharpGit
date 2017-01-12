@@ -8,16 +8,25 @@
       d:DesignHeight="300" d:DesignWidth="600"
       Title="LoginPage">
 
-    <Grid>
+    <Grid Background="#FF2C3C47">
         <TextBox x:Name="UsernameText" Height="21" Margin="78,15,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox x:Name="Password" Height="21" Margin="78,41,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Label Content="Username" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <PasswordBox x:Name="PasswordText" Height="21" Margin="78,41,10,0" PasswordChar="*" VerticalAlignment="Top"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Button x:Name="Login" Content="Login" Margin="0,67,10,0" VerticalAlignment="Top" Click="LoginUser" Foreground="White" Background="#FF00C160" BorderBrush="#FF91D3B2" HorizontalAlignment="Right" Width="75"/>
-        <CheckBox x:Name="RememberPassword" Content="Remember password" HorizontalAlignment="Left" Margin="78,70,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <ComboBox Margin="0,67,90,0" VerticalAlignment="Top" Height="20" HorizontalAlignment="Right" Width="120">
-            <Button x:Name="SelectGitHub" Content="GitHub" />
-            <Button x:Name="SelectBitBucket" Content="BitBucket"/>
+        <!--<CheckBox x:Name="RememberPassword" Content="Remember password" HorizontalAlignment="Left" Margin="78,70,0,0" VerticalAlignment="Top" Foreground="White"/> -->
+        <ComboBox x:Name="ServiceSelector" Margin="0,67,90,0" VerticalAlignment="Top" Height="20" HorizontalAlignment="Right" Width="120" SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="0">
+            <ComboBoxItem Name="GitHub">GitHub</ComboBoxItem>
+            <ComboBoxItem Name="BitBucket">BitBucket</ComboBoxItem>
         </ComboBox>
+        <Label Content="Options" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top" Foreground="White" Width="115" Height="37" FontSize="18"/>
+        <TextBlock x:Name="Output" Margin="10,92,10,0" TextWrapping="Wrap" Text="" Height="19" VerticalAlignment="Top" Foreground="#FFD2FFF1"/>
+        <TextBox x:Name="EmailText" Height="21" Margin="78,146,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox x:Name="FirstNameText" Height="21" Margin="78,172,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Label Content="FirstName" HorizontalAlignment="Left" Margin="10,167,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox x:Name="LastNameText" Height="21" Margin="78,198,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Label Content="LastName" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Button x:Name="Update" Content="Update" Margin="0,224,10,0" VerticalAlignment="Top" Click="UpdateUser" Foreground="White" Background="#FF00C160" BorderBrush="#FF91D3B2" HorizontalAlignment="Right" Width="75"/>
     </Grid>
 </Page>
