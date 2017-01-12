@@ -12,7 +12,7 @@ namespace SharpGit.Model.Facade
 
         public Repository CreateRepository(string name, string path)
         {
-           /try
+            try
             {
                 using (var transaction = _dbContext.Database.BeginTransaction())
                 {

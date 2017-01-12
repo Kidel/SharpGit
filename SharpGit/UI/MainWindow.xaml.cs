@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SharpGit.Backbone;
+using SharpGit.UI;
 
 namespace SharpGit
 {
@@ -24,19 +25,21 @@ namespace SharpGit
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Content = new LoginPage();
+        }
+        private void ShowClonePanel(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new ClonePage();
         }
 
-        private CommandInterface CommandInterface = new CommandInterface();
-
-        private void Clone(object sender, RoutedEventArgs e)
+        private void ShowLoginPanel(object sender, RoutedEventArgs e)
         {
-            Message m = CommandInterface.Clone(UrlText.Text, "test", PathText.Text);
-            Output.Text = m.Text;
+            MainFrame.Content = new LoginPage();
         }
 
-        private void Pull(object sender, RoutedEventArgs e)
+        private void ShowRepositoryListPanel(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Content = new LoginPage();
         }
     }
 }
