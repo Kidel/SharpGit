@@ -1,5 +1,9 @@
 ﻿using System;
 using SharpGit.Model.Facade;
+using System.Threading;
+using System.Threading.Tasks;
+using System.IO;
+using SharpGit.Util;
 
 namespace SharpGit.Backbone
 {
@@ -11,6 +15,7 @@ namespace SharpGit.Backbone
         public Message Clone(string url, string name, string destinationFolder)
         {
             Message m = new Message();
+            string sanitizedPath = Path.Combine(destinationFolder, Sanitizer.SanitizeFolderName(name));
             try
             {
                 m.Type = 0;
@@ -19,12 +24,12 @@ namespace SharpGit.Backbone
                 {
                     var co = new LibGit2Sharp.CloneOptions();
                     co.CredentialsProvider = (_url, _user, _cred) => new LibGit2Sharp.UsernamePasswordCredentials { Username = Status.CurrentUser.UserName, Password = Status.CurrentUser.Password };
-                    m.Text = LibGit2Sharp.Repository.Clone(url, destinationFolder, co);
+                    m.Text = LibGit2Sharp.Repository.Clone(url, sanitizedPath, co);
                 }
                 else
-                    m.Text = LibGit2Sharp.Repository.Clone(url, destinationFolder);
+                    m.Text = LibGit2Sharp.Repository.Clone(url, sanitizedPath);
 
-                SelectRepository(rf.CreateRepository(name, destinationFolder).Name);
+                SelectRepository(rf.CreateRepository(name, sanitizedPath).Name);
             }
             catch (Exception e)
             {

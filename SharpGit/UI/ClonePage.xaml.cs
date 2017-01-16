@@ -1,18 +1,9 @@
 ﻿using SharpGit.Backbone;
+using SharpGit.Util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SharpGit.UI
 {
@@ -21,23 +12,27 @@ namespace SharpGit.UI
     /// </summary>
     public partial class ClonePage : Page
     {
+        private CommandParallel cp = new CommandParallel();
+        private ProcessEventHandler peh;
+
         public ClonePage()
         {
             InitializeComponent();
         }
 
-        private CommandInterface CommandInterface = new CommandInterface();
-
-        private void Clone(object sender, RoutedEventArgs e)
+        private void UpdateOutputContent(string text) 
         {
-            Message m = CommandInterface.Clone(UrlText.Text, "test", PathText.Text);
-            // TODO fork and loadbar
-            Output.Text = m.Text;
+            Output.Text = text; // TODO: spawn a widget for this
         }
 
-        private void Pull(object sender, RoutedEventArgs e)
+        private void CloneParallel(object sender, RoutedEventArgs e)
         {
-
+            Status.SetTemporaryRepositoryData(UrlText.Text, NameText.Text, PathText.Text);
+            UpdateOutputContent("Cloning..."); 
+            // Start long running process and return immediatly
+            var task = Task.Factory.StartNew(cp.CloneProcess);
+            peh = new ProcessEventHandler(Dispatcher, UpdateOutputContent);
+            task.ContinueWith(peh.OnProcessFinished);
         }
     }
 }

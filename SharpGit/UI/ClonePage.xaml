@@ -10,12 +10,18 @@
 
     <Grid Background="#FF2C3C47">
         <TextBox x:Name="UrlText" Height="21" Margin="78,15,10,0" TextWrapping="Wrap" Text="https://github.com/Kidel/Plotter.git" VerticalAlignment="Top"/>
-        <TextBox x:Name="PathText" Height="21" Margin="78,41,41,0" TextWrapping="Wrap" Text="D:\GitHub\test" VerticalAlignment="Top"/>
-        <Label Content="Url" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label Content="Path" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Button x:Name="CloneButton" Content="Clone" HorizontalAlignment="Right" Margin="0,67,90,0" VerticalAlignment="Top" Width="75" Click="Clone" Foreground="White" Background="#FF00C160" BorderBrush="#FF91D3B2"/>
-        <Button x:Name="PullButton" Content="Pull" Margin="0,67,10,0" VerticalAlignment="Top" Click="Pull" Foreground="White" Background="#FF00C160" BorderBrush="#FF91D3B2" HorizontalAlignment="Right" Width="75"/>
-        <TextBlock x:Name="Output" Margin="10,102,10,10" TextWrapping="Wrap" Text="" Foreground="#FFD2FFF1"/>
-        <Button Content="..." Margin="0,41,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="26" Height="21"/>
+		<Label Content="Url" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+
+		<TextBox x:Name="NameText" Height="21" Margin="78,41,10,0" TextWrapping="Wrap" Text="test" VerticalAlignment="Top"/>
+		<Label Content="Name" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Foreground="White"/>
+		
+		<TextBox x:Name="PathText" Height="21" Margin="78,67,41,0" TextWrapping="Wrap" Text="D:\GitHub" VerticalAlignment="Top"/>
+		<Label Content="Path" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Foreground="White"/>
+		<Button Content="..." Margin="0,67,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="26" Height="21"/>
+		
+        <Button x:Name="CloneButton" Content="Clone" HorizontalAlignment="Right" Margin="0,93,10,0" VerticalAlignment="Top" Width="75" Click="CloneParallel" Foreground="White" Background="#FF00C160" BorderBrush="#FF91D3B2"/>
+
+		<TextBlock x:Name="Output" Margin="10,118,10,10" TextWrapping="Wrap" Text="" Foreground="#FFD2FFF1"/>
+        
     </Grid>
 </Page>

@@ -112,9 +112,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Backbone\CommandParallel.cs" />
     <Compile Include="UI\ClonePage.xaml.cs">
       <DependentUpon>ClonePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Util\ProcessEventHandler.cs" />
+    <Compile Include="Util\Sanitizer.cs" />
     <Page Include="UI\ClonePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -12,7 +12,7 @@
         <Frame x:Name="MenuFrame" HorizontalAlignment="Left" Width="45" Background="#FF1F2C32" Foreground="#FFDAF0FF" NavigationUIVisibility="Hidden"/>
         
         <Button x:Name="LoginButton" Content="Login" VerticalAlignment="Top" Click="ShowLoginPanel" Height="43" Margin="0,0,0,0" HorizontalAlignment="Left" Width="45" Background="{x:Null}" Foreground="#FFEDF8FF" BorderBrush="{x:Null}"/>
-        <Button x:Name="CloneButton" Content="Add" VerticalAlignment="Top" Click="ShowClonePanel" Height="43" Margin="0,43,0,0" HorizontalAlignment="Left" Width="45" Background="{x:Null}" Foreground="#FFEDF8FF" BorderBrush="{x:Null}"/>
+        <Button x:Name="CloneButton" Content="Clone" VerticalAlignment="Top" Click="ShowClonePanel" Height="43" Margin="0,43,0,0" HorizontalAlignment="Left" Width="45" Background="{x:Null}" Foreground="#FFEDF8FF" BorderBrush="{x:Null}"/>
         <Button x:Name="RepositoryListButton" Content="List" VerticalAlignment="Top" Click="ShowRepositoryListPanel" Height="43" Margin="0,86,0,0" HorizontalAlignment="Left" Width="45" Background="{x:Null}" Foreground="#FFEDF8FF" BorderBrush="{x:Null}"/>
     </Grid>
 </Window>
