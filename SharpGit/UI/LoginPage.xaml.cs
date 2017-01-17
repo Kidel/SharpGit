@@ -55,7 +55,7 @@ namespace SharpGit.UI
             if (userList.Count > 0)
             {
                 var user = userList.First();
-                uf.UpdateUser(user.UserId, EmailText.Text, UsernameText.Text, FirstNameText.Text, LastNameText.Text, ServiceSelector.Text);
+                uf.UpdateUser(user.UserId, EmailText.Text, UsernameText.Text, $"{FirstNameText.Text} {LastNameText.Text}", ServiceSelector.Text);
                 m.Text = "Updated";
                 CommandInterface.SetCurrentUser(user);
             }

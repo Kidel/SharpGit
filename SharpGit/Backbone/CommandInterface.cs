@@ -63,11 +63,11 @@ namespace SharpGit.Backbone
 
                 if (user == null)
                 {
-                    user = uf.CreateUser("", username, "", "", type);
+                    user = uf.CreateUser("", username, "", type);
                 }
                 else
                 {
-                    uf.UpdateUser(user.UserId, "", username, "", "", type);
+                    uf.UpdateUser(user.UserId, "", username, "", type);
                 }
 
                 SetCurrentUser(user);

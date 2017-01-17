@@ -40,7 +40,7 @@ namespace SharpGit.UI
         private void CloneParallel(object sender, RoutedEventArgs e)
         {
             if(Status.CurrentUser != null)
-                uf.UpdateUser(Status.CurrentUser.UserId, "", "", "", "", "", PathText.Text);
+                uf.UpdateUser(Status.CurrentUser.UserId, "", "", "", "", PathText.Text);
             Status.SetTemporaryRepositoryData(UrlText.Text, NameText.Text, PathText.Text);
             UpdateOutputContent("Cloning...");
             WindowStatus.ModalFrameCloseButton.IsEnabled = false;

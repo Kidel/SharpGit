@@ -10,7 +10,7 @@ namespace SharpGit.Model.Facade
     {
         private readonly DatabaseContext _dbContext = new DatabaseContext();
 
-        public User CreateUser(string email, string userName, string firstName, string lastName, string accountType)
+        public User CreateUser(string email, string userName, string fullName, string accountType)
         {
             try
             {
@@ -20,7 +20,7 @@ namespace SharpGit.Model.Facade
                     {
                         Email = email,
                         UserName = userName,
-                        Name = $"{firstName} {lastName}",
+                        Name = fullName,
                         AccountType = accountType
                     };
                     _dbContext.Add(user);
@@ -106,7 +106,12 @@ namespace SharpGit.Model.Facade
             }
         }
 
-        public User UpdateUser(int id, string email="", string userName="", string firstName="", string lastName="", string accountType="", string lastFolderUsed="")
+        public User UpdateUser(User user)
+        {
+            return UpdateUser(user.UserId, user.Email, user.UserName, user.Name, user.AccountType, user.LastFolderUsed);
+        }
+
+        public User UpdateUser(int id, string email="", string userName="", string fullName="", string accountType="", string lastFolderUsed="")
         {
             try
             {
@@ -114,8 +119,8 @@ namespace SharpGit.Model.Facade
                 {
                     var user = GetUser(id);
 
-                    if (firstName != "" || lastName != "")
-                        user.Name = $"{firstName} {lastName}";
+                    if (fullName != "")
+                        user.Name = fullName;
                     if (email != "")
                         user.Email = email;
                     if (userName != "")

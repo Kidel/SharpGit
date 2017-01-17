@@ -100,6 +100,11 @@ namespace SharpGit.Model.Facade
             }
         }
 
+        public Repository UpdateRepository(Repository repository)
+        {
+            return UpdateRepository(repository.RepositoryId, repository.Name, repository.Path);
+        }
+
         public Repository UpdateRepository(int id, string name="", string path="")
         {
             try
