@@ -51,7 +51,7 @@ namespace SharpGit
 
         private void ShowRepositoryListPanel(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new LoginPage();
+            MainFrame.Content = new RepositoryListPage();
         }
     }
 }

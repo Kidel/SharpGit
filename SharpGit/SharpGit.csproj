@@ -115,6 +115,9 @@
     <Compile Include="UI\ClonePage.xaml.cs">
       <DependentUpon>ClonePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\RepositoryListPage.xaml.cs">
+      <DependentUpon>RepositoryListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\SimpleModal.xaml.cs">
       <DependentUpon>SimpleModal.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UI\RepositoryListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\SimpleModal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
