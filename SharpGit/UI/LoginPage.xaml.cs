@@ -36,15 +36,15 @@ namespace SharpGit.UI
                 ServiceSelector.Text = user.AccountType;
 
                 EmailText.Text = user.Email;
-                FirstNameText.Text = user.Name.Split(' ')[0];
-                LastNameText.Text = user.Name.Split(' ')[1];
+                FirstNameText.Text = user.GetFirstName();
+                LastNameText.Text = user.GetLastName();
             }
         }
 
         private void LoginUser(object sender, RoutedEventArgs e)
         {
             Message m = CommandInterface.LogIn(UsernameText.Text, PasswordText.Password, ServiceSelector.Text);
-            Output.Text = m.Text;
+            Output1.Text = m.IsError() ? $"Unexpected error: {m.Text}" : $"Login successfull, password won't be stored but will be kept for this session";
             // TODO load repo panel if m.Type is not error
         }
 
@@ -64,7 +64,7 @@ namespace SharpGit.UI
                 m.Text = "You must log in before updating";
                 m.SetError();
             }
-            Output.Text = m.Text;
+            Output2.Text = m.Text;
             // TODO load repo panel if m.Type is not error
         }
 

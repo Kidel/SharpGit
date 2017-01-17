@@ -106,10 +106,10 @@ namespace SharpGit.Model.Facade
             }
         }
 
-        public User UpdateUser(int id, string email, string userName, string firstName, string lastName, string accountType)
+        public User UpdateUser(int id, string email="", string userName="", string firstName="", string lastName="", string accountType="", string lastFolderUsed="")
         {
-            //try
-            //{
+            try
+            {
                 using (var transaction = _dbContext.Database.BeginTransaction())
                 {
                     var user = GetUser(id);
@@ -122,6 +122,8 @@ namespace SharpGit.Model.Facade
                         user.UserName = userName;
                     if (accountType != "")
                         user.AccountType = accountType;
+                    if (lastFolderUsed != "")
+                        user.LastFolderUsed = lastFolderUsed;
 
                     _dbContext.Update(user);
                     _dbContext.SaveChanges();
@@ -129,12 +131,12 @@ namespace SharpGit.Model.Facade
                     transaction.Commit();
                     return user;
                 }
-            //}
-            //catch (Exception e)
-            //{
-                //Console.WriteLine(e.ToString());
-                //return null;
-            //}
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
         }
 
         public bool DeleteUser(int id)

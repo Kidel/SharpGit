@@ -39,6 +39,20 @@ namespace SharpGit.Backbone
             return m;
         }
 
+        public string CloneFromStatus()
+        {
+            string url, name, path;
+            if (Status.TemporaryData != null &&
+                Status.TemporaryData.TryGetValue("url", out url) &&
+                Status.TemporaryData.TryGetValue("name", out name) &&
+                Status.TemporaryData.TryGetValue("path", out path))
+            {
+                Message m = Clone(url, name, path);
+                return m.IsError() ? $"There was an error: {m.Text}" : $"Repository successfully cloned to {m.Text}";
+            }
+            else return "Unexpected error";
+        }
+
         public Message LogIn(string username, string password, string type)
         {
             Message m = new Message();

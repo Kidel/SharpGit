@@ -87,7 +87,7 @@ namespace SharpGit.Model.Facade
             }
         }
 
-        public Repository UpdateRepository(int id, string name, string path)
+        public Repository UpdateRepository(int id, string name="", string path="")
         {
             try
             {

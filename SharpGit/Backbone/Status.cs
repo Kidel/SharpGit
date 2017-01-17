@@ -15,6 +15,8 @@ namespace SharpGit.Backbone
         public static User CurrentUser { get; set; }
         public static bool HasUserLoggedIn { get; set; }
 
+        public static string OutputMessage { get; set; }
+
         public static bool GetTemporaryRepositoryData(out string url, out string name, out string path)
         {
             url = ""; name = ""; path = "";

@@ -26,6 +26,18 @@ namespace SharpGit
         {
             InitializeComponent();
             MainFrame.Content = new LoginPage();
+            ModalFrame.Content = new SimpleModal();
+            WindowStatus.ModalFrame = ModalFrame;
+            HideModalFrame();
+        }
+
+        public void ShowModalFrame()
+        {
+            WindowStatus.ShowModalFrame();
+        }
+        public void HideModalFrame()
+        {
+            WindowStatus.HideModalFrame();
         }
         private void ShowClonePanel(object sender, RoutedEventArgs e)
         {

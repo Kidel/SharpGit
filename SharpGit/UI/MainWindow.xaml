@@ -5,14 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SharpGit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="466.269" Width="705.862">
+        Title="MainWindow" Height="466.269" Width="705.862" MinHeight="400" MinWidth="460">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45"/>
+            <ColumnDefinition Width="653*" MinWidth="400"/>
+        </Grid.ColumnDefinitions>
 
-        <Frame x:Name="MainFrame" Margin="45,0,0,0" Background="#FF2C3C47" Foreground="White" NavigationUIVisibility="Hidden"/>
-        <Frame x:Name="MenuFrame" HorizontalAlignment="Left" Width="45" Background="#FF1F2C32" Foreground="#FFDAF0FF" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MenuFrame" Background="#FF1F2C32" Foreground="#FFDAF0FF" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
+        <Frame x:Name="MainFrame" Background="#FF2C3C47" Foreground="White" NavigationUIVisibility="Hidden" Grid.Column="2"/>
         
         <Button x:Name="LoginButton" Content="Login" VerticalAlignment="Top" Click="ShowLoginPanel" Height="43" Margin="0,0,0,0" HorizontalAlignment="Left" Width="45" Background="{x:Null}" Foreground="#FFEDF8FF" BorderBrush="{x:Null}"/>
         <Button x:Name="CloneButton" Content="Clone" VerticalAlignment="Top" Click="ShowClonePanel" Height="43" Margin="0,43,0,0" HorizontalAlignment="Left" Width="45" Background="{x:Null}" Foreground="#FFEDF8FF" BorderBrush="{x:Null}"/>
         <Button x:Name="RepositoryListButton" Content="List" VerticalAlignment="Top" Click="ShowRepositoryListPanel" Height="43" Margin="0,86,0,0" HorizontalAlignment="Left" Width="45" Background="{x:Null}" Foreground="#FFEDF8FF" BorderBrush="{x:Null}"/>
+
+        <Frame x:Name="ModalFrame" Margin="0,0,0,0" Background="#66000000" Foreground="White" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
