@@ -115,6 +115,9 @@
     <Compile Include="UI\ClonePage.xaml.cs">
       <DependentUpon>ClonePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\CurrentRepositoryPage.xaml.cs">
+      <DependentUpon>CurrentRepositoryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\RepositoryListPage.xaml.cs">
       <DependentUpon>RepositoryListPage.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
     <Compile Include="Util\ProcessEventHandler.cs" />
     <Compile Include="Util\Sanitizer.cs" />
     <Page Include="UI\ClonePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\CurrentRepositoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

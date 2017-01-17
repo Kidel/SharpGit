@@ -46,6 +46,19 @@ namespace SharpGit.Model.Facade
             }
         }
 
+        public Repository GetLastRepository()
+        {
+            try
+            {
+                return _dbContext.Repositories.Last();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+        }
+
         public List<Repository> GetRepositoryList()
         {
             try

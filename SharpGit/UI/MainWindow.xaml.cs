@@ -28,6 +28,7 @@ namespace SharpGit
             MainFrame.Content = new LoginPage();
             ModalFrame.Content = new SimpleModal();
             WindowStatus.ModalFrame = ModalFrame;
+            WindowStatus.MainWindow = this;
             HideModalFrame();
         }
 
@@ -48,10 +49,17 @@ namespace SharpGit
         {
             MainFrame.Content = new LoginPage();
         }
-
         private void ShowRepositoryListPanel(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new RepositoryListPage();
+        }
+        private void ShowCurrentRepositoryPanel(object sender, RoutedEventArgs e)
+        {
+            ShowCurrentRepositoryPanel();
+        }
+        public void ShowCurrentRepositoryPanel()
+        {
+            MainFrame.Content = new CurrentRepositoryPage();
         }
     }
 }

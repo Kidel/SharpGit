@@ -18,6 +18,7 @@
         <Button x:Name="LoginButton" Content="Login" VerticalAlignment="Top" Click="ShowLoginPanel" Height="43" Margin="0,0,0,0" HorizontalAlignment="Left" Width="45" Background="{x:Null}" Foreground="#FFEDF8FF" BorderBrush="{x:Null}"/>
         <Button x:Name="CloneButton" Content="Clone" VerticalAlignment="Top" Click="ShowClonePanel" Height="43" Margin="0,43,0,0" HorizontalAlignment="Left" Width="45" Background="{x:Null}" Foreground="#FFEDF8FF" BorderBrush="{x:Null}"/>
         <Button x:Name="RepositoryListButton" Content="List" VerticalAlignment="Top" Click="ShowRepositoryListPanel" Height="43" Margin="0,86,0,0" HorizontalAlignment="Left" Width="45" Background="{x:Null}" Foreground="#FFEDF8FF" BorderBrush="{x:Null}"/>
+        <Button x:Name="CurrentRepositoryButton" Content="Repo" VerticalAlignment="Top" Click="ShowCurrentRepositoryPanel" Height="43" Margin="0,129,0,0" HorizontalAlignment="Left" Width="45" Background="{x:Null}" Foreground="#FFEDF8FF" BorderBrush="{x:Null}"/>
 
         <Frame x:Name="ModalFrame" Margin="0,0,0,0" Background="#66000000" Foreground="White" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
     </Grid>

@@ -29,17 +29,33 @@ namespace SharpGit.UI
         {
             InitializeComponent();
 
-            repositories = rf.GetRepositoryList();
-            if (repositories.Count > 0)
-            {
-                ListBox.ItemsSource = repositories;
-            }
+            InitializeRepositoryList();
         }
 
+        private void InitializeRepositoryList()
+        {
+            repositories = rf.GetRepositoryList();
+            ListBox.ItemsSource = repositories;
+        }
         private void SelectRepository(object sender, MouseButtonEventArgs e)
         {
-            Status.CurrentRepository = (Repository)((Grid)sender).DataContext;
-            // TODO goes to repository page
+            if (e.ClickCount == 2)
+            {
+                Status.CurrentRepository = (Repository)((Grid)sender).DataContext;
+                WindowStatus.ShowRepositoryPage();
+            }
+        }
+        private void DeleteRepository(object sender, RoutedEventArgs e)
+        {
+            Status.CurrentRepository = null;
+            Repository selected = (Repository)(ListBox.SelectedItem);
+            rf.DeleteRepository(selected.RepositoryId);
+            InitializeRepositoryList();
+        }
+        private void OpenRepository(object sender, RoutedEventArgs e)
+        {
+            Status.CurrentRepository = (Repository)(ListBox.SelectedItem);
+            WindowStatus.ShowRepositoryPage();
         }
     }
 }

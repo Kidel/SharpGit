@@ -15,6 +15,7 @@ namespace SharpGit.UI
     public partial class ClonePage : Page
     {
         private UserFacade uf = new UserFacade();
+        private RepositoryFacade rf = new RepositoryFacade();
         private CommandInterface ci = new CommandInterface();
         private ProcessEventHandler peh;
 
@@ -47,6 +48,9 @@ namespace SharpGit.UI
             var task = Task.Factory.StartNew(ci.CloneFromStatus);
             peh = new ProcessEventHandler(Dispatcher, UpdateOutputContent);
             task.ContinueWith(peh.OnProcessFinished);
+
+            Status.CurrentRepository = rf.GetLastRepository();
+            WindowStatus.ShowRepositoryPage();
         }
 
     }
